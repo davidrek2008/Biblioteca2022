@@ -11,7 +11,7 @@ namespace Biblioteca.Controllers
     {
         public static void CheckLogin(Controller controller)
         {
-            if (string.IsNullOrEmpty(controller.HttpContext.Session.GetString("Login")))
+            if (string.IsNullOrEmpty(controller.HttpContext.Session.GetString("login")))
             {
                 controller.Request.HttpContext.Response.Redirect("/Home/Login");
             }
@@ -34,7 +34,7 @@ namespace Biblioteca.Controllers
                 }
                 else
                 {
-                    controller.HttpContext.Session.SetString("Login", ListaUsuarioEncontrado[0].Login);
+                    controller.HttpContext.Session.SetString("login", ListaUsuarioEncontrado[0].Login);
                     controller.HttpContext.Session.SetString("Nome", ListaUsuarioEncontrado[0].Nome);
                     controller.HttpContext.Session.SetInt32("Tipo", ListaUsuarioEncontrado[0].Tipo);
                     return true;
@@ -64,7 +64,7 @@ namespace Biblioteca.Controllers
 
         public static void verificaSeUsuarioEAdmin(Controller controller)
         {
-            if (!(controller.HttpContext.Session.GetInt32("tipo") == Usuario.ADMIN))
+            if (!(controller.HttpContext.Session.GetInt32("Tipo") == Usuario.ADMIN))
             {
                 controller.Request.HttpContext.Response.Redirect("/Usuario/NeedAdmin");
             }
